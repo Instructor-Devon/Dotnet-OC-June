@@ -1,0 +1,12 @@
+@{
+    string word = "asdfd";
+    string[] parties = new string[]
+    {
+        "Birthday", "Anniversary", "Batchelorette"
+    };
+}
+<h1>@word from the View!</h1>
+@foreach(var party in parties)
+{
+    <p><a href="/party/@party.ToLower()">@party</a></p>
+}
