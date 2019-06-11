@@ -1,0 +1,24 @@
+﻿<h1>Quotes App</h1>
+@foreach(var quote in ViewBag.Quotes)
+{
+    <p>@quote.Content (@quote.CreatedAt.ToString("g"))</p>
+}
+<hr>
+<form action="/create" method="post">
+    <div class="form-group">
+        <input type="text" name="Content" placeholder="Content:">
+    </div>
+    <div class="form-group">
+        <input type="text" name="Byline" placeholder="Byline:">
+    </div>
+    <div class="form-group">
+        <label for="UserId">User</label>
+        <select name="UserId" id="UserId">
+            @foreach(var user in ViewBag.Users)
+            {
+                <option value="@user.UserId">@user.Name</option>
+            }
+        </select>
+    </div>
+    <button>Submit</button>
+</form>

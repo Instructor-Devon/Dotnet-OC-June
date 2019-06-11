@@ -1,0 +1,7 @@
+@model User
+<h1>Details for User #@Model.UserId</h1>
+<h3>Quotes submitted by @Model.Name</h3>
+@foreach(var quote in Model.CreatedQuotes)
+{
+    <p>@quote.Content - @quote.Byline</p>
+}
