@@ -16,14 +16,21 @@ namespace EFFunzies.Models
         public int UserId {get;set;}
         public string FirstName {get;set;}
         public string LastName {get;set;}
+        [EmailAddress]
+        public string Email {get;set;}
+        [MinLength(8, ErrorMessage="Password must be at least 8 characters")]
+        public string Password {get;set;}
         [NotMapped]
-        [Compare("FirstName")]
-        public string ComparePassword {get;set;}
+        [Compare("Password")]
+        public string Confirm {get;set;}
         // Navigation Property
         public List<Message> MessagesCreated {get;set;}
+        public List<Vote> VotesIssued {get;set;}
     }
     public class LoginUser
     {
-
+        [EmailAddress]
+        public string LogEmail {get;set;}
+        public string LogPassword {get;set;}
     }
 }

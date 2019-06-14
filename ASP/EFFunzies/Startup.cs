@@ -36,7 +36,7 @@ namespace EFFunzies
                 app.UseDeveloperExceptionPage();
             }
             
-
+            app.UseSession();
             app.UseStaticFiles();
             app.UseMvc();
         }

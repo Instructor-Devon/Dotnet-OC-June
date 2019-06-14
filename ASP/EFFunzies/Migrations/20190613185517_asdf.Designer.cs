@@ -2,14 +2,16 @@
 using EFFunzies.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFFunzies.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20190613185517_asdf")]
+    partial class asdf
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,43 +52,10 @@ namespace EFFunzies.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("EFFunzies.Models.Vote", b =>
-                {
-                    b.Property<int>("VoteId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsUpvote");
-
-                    b.Property<int>("MessageId");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("VoteId");
-
-                    b.HasIndex("MessageId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Votes");
-                });
-
             modelBuilder.Entity("EFFunzies.Models.Message", b =>
                 {
                     b.HasOne("EFFunzies.Models.User", "Creator")
                         .WithMany("MessagesCreated")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("EFFunzies.Models.Vote", b =>
-                {
-                    b.HasOne("EFFunzies.Models.Message", "VotedMessage")
-                        .WithMany("VotesRecieved")
-                        .HasForeignKey("MessageId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("EFFunzies.Models.User", "Voter")
-                        .WithMany("VotesIssued")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

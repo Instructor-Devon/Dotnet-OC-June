@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EFFunzies.Models
@@ -10,5 +11,6 @@ namespace EFFunzies.Models
         public int UserId {get;set;}
         // Navigation Property
         public User Creator {get;set;}
+        public List<Vote> VotesRecieved {get;set;}
     }
 }
