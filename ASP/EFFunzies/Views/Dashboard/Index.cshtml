@@ -1,12 +1,12 @@
 @model List<Message>
 <h2>Messages</h2>
+<a asp-action="New">Create a post...</a>
 @foreach(var message in Model)
 {
-    int karmaScore = message.VotesRecieved.Count(v => v.IsUpvote) - message.VotesRecieved.Count(v => !v.IsUpvote);
     <div class="message">
         <p>@message.Content (posted by) <a asp-action="Show" asp-controller="Home" asp-route-userId="@message.UserId">@message.Creator.FirstName</a></p>
-        <a class="glyphicon glyphicon-arrow-up" href="#"></a>
-        <a href="#" class="glyphicon glyphicon-arrow-down"></a>
-        <h1>KARMA: @karmaScore</h1>
+        <a class="glyphicon glyphicon-arrow-up" asp-action="Vote" asp-route-isUpvote="@true" asp-route-messageId="@message.MessageId"></a>
+        <a class="glyphicon glyphicon-arrow-down" asp-action="Vote" asp-route-isUpvote="@false" asp-route-messageId="@message.MessageId"></a>
+        <h1>KARMA: @message.KarmaScore</h1>
     </div>
 }
